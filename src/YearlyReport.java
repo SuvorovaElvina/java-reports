@@ -1,22 +1,11 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class YearlyReport {
     ArrayList<DataYear> dataYear = new ArrayList<>();
-
-    private String readFileContentsOrNull(String path) {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("Невозможно прочитать файл с годовым отчётом. Возможно, файл не находится в нужной директории.");
-        }
-        return null;
-    }
+    ReadFileContents readFileContents= new ReadFileContents();
 
     public void getReport(String path){
-        String months = this.readFileContentsOrNull(path);
+        String months = readFileContents.readFileContentsOrNull(path);
         String[] lines = months.split("\n");
 
         for (int j = 1; j < lines.length; j++) {
@@ -49,24 +38,19 @@ public class YearlyReport {
                     profitOfMonth.add(data.amount);
                 }
             }
-        } else {
-            System.out.println("Вы не считали годовой отчёт.");
         }
         return profitOfMonth;
     }
 
     public ArrayList<Integer> expenseOfMonth(){
         ArrayList<Integer> expenseOfMonth = new ArrayList<>();
-        if (dataYear.isEmpty()){
-            System.out.println("Вы не считали годовой отчёт.");
-        } else {
+        if (!dataYear.isEmpty())
             for (int i = 0; i < dataYear.size(); i++) {
                 DataYear data = dataYear.get(i);
                 if (data.isExpense) {
                     expenseOfMonth.add(data.amount);
                 }
             }
-        }
         return expenseOfMonth;
     }
 

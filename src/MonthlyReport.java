@@ -1,23 +1,12 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MonthlyReport {
     List<MonthData> dataMonth = new ArrayList<>();
-
-    private String readFileContentsOrNull(String path) {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("Невозможно прочитать файл с месячным отчётом. Возможно, файл не находится в нужной директории.");
-        }
-        return null;
-    }
+    ReadFileContents readFileContents= new ReadFileContents();
 
     private List<Data> readData(String path) {
-        String months = this.readFileContentsOrNull(path);
+        String months = readFileContents.readFileContentsOrNull(path);
         String[] lines = months.split("\n");
         List<Data> datas = new ArrayList<>();
         for (int j = 1; j <= lines.length - 1; j++) {
@@ -36,7 +25,7 @@ public class MonthlyReport {
     public void getReport() {
         for (int i = 0; i < 3; i++) {
             String monthName;
-            switch (i) {
+            switch (i) { // я подумаю ещё как тут использовать enum, не понимаю так как у меня ещё сразу здесь перечисление файлов по месяцу
                 case 0:
                     monthName = "Январь";
                     break;
@@ -86,9 +75,7 @@ public class MonthlyReport {
 
     public ArrayList<Integer> sumProfitMonth(){
         ArrayList<Integer> sumProfitOfMonth = new ArrayList<>();
-        if (dataMonth.size() == 0) {
-            System.out.println("Вы не считали месячные отчёты.");
-        } else {
+        if (!dataMonth.isEmpty()) {
             for (MonthData monthData : dataMonth) {
                 int sumProfit = 0;
                 for (Data data : monthData.datas) {
@@ -105,9 +92,7 @@ public class MonthlyReport {
 
     public ArrayList<Integer> sumExpenseMonth(){
         ArrayList<Integer> sumExpenseOfMonth = new ArrayList<>();
-        if (dataMonth.size() == 0) {
-            System.out.println("Вы не считали месячные отчёты.");
-        } else {
+        if (!dataMonth.isEmpty()) {
             for (MonthData monthData : dataMonth) {
                 int sumExpense = 0;
                 for (Data data : monthData.datas) {
