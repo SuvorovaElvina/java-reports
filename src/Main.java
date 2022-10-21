@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +15,16 @@ public class Main {
             } else if (command == 2) {
                 yearlyReport.getReport("resources\\y.2021.csv");
             } else if (command == 3) {
-                reconciliation.checkProfit(monthlyReport.sumProfitMonth(), yearlyReport.profitOfMonth());
-                reconciliation.checkExpense(monthlyReport.sumExpenseMonth(), yearlyReport.expenseOfMonth());
+                if (monthlyReport.dataMonth.isEmpty() && yearlyReport.dataYear.isEmpty()){
+                    System.out.println("Вы не считали месячный и годовой отчёты.");
+                } else if (monthlyReport.dataMonth.isEmpty()) {
+                    System.out.println("Вы не считали месячный отчёт.");
+                } else if (yearlyReport.dataYear.isEmpty()) {
+                    System.out.println("Вы не считали годовой отчёт.");
+                } else {
+                    reconciliation.checkProfit(monthlyReport.sumProfitMonth(), yearlyReport.profitOfMonth());
+                    reconciliation.checkExpense(monthlyReport.sumExpenseMonth(), yearlyReport.expenseOfMonth());
+                }
             } else if (command == 4) {
                 monthlyReport.printInformation();
             } else if (command == 5) {
