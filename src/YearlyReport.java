@@ -32,8 +32,7 @@ public class YearlyReport {
     public ArrayList<Integer> profitOfMonth() {
         ArrayList<Integer> profitOfMonth = new ArrayList<>();
         if (!dataYear.isEmpty()){
-            for (int i = 0; i < dataYear.size(); i++) {
-                DataYear data = dataYear.get(i);
+            for (DataYear data : dataYear) {
                 if (!data.isExpense) {
                     profitOfMonth.add(data.amount);
                 }
@@ -45,8 +44,7 @@ public class YearlyReport {
     public ArrayList<Integer> expenseOfMonth(){
         ArrayList<Integer> expenseOfMonth = new ArrayList<>();
         if (!dataYear.isEmpty())
-            for (int i = 0; i < dataYear.size(); i++) {
-                DataYear data = dataYear.get(i);
+            for (DataYear data : dataYear) {
                 if (data.isExpense) {
                     expenseOfMonth.add(data.amount);
                 }
@@ -59,9 +57,8 @@ public class YearlyReport {
         Integer sumExpense = 0;
         Integer monthProfit = 0;
         Integer monthExpense = 0;
-        for (int i = 0; i < dataYear.size(); i++) {
-            DataYear data = dataYear.get(i);
-            if (!data.isExpense){
+        for (DataYear data : dataYear) {
+            if (!data.isExpense) {
                 sumProfit += data.amount;
                 monthProfit++;
             } else {
@@ -86,7 +83,7 @@ public class YearlyReport {
                 sumExpense = data.amount;
             }
             if (i == 1 || i == 3 || i == 5) {
-                Integer profitOfMonth = (sumProfit - sumExpense);
+                int profitOfMonth = (sumProfit - sumExpense);
                 System.out.println("Месяц № " + j + " " + profitOfMonth);
                 j++;
             }

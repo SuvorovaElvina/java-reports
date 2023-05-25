@@ -108,9 +108,9 @@ public class MonthlyReport {
     }
 
     private static class MonthData {
-        private String monthName;
+        private final String monthName;
 
-        private List<Data> datas;
+        private final List<Data> datas;
 
         private MonthData(String monthName, List<Data> datas) {
             this.monthName = monthName;

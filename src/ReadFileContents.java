@@ -8,7 +8,7 @@ public class ReadFileContents {
             return Files.readString(Path.of(path));
         } catch (IOException e) {
             System.out.println("Невозможно прочитать файл с годовым отчётом. Возможно, файл не находится в нужной директории.");
+            return null;
         }
-        return null;
     }
 }
