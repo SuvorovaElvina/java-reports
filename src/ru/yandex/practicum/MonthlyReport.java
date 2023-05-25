@@ -1,9 +1,11 @@
+package ru.yandex.practicum;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MonthlyReport {
-    List<MonthData> dataMonth = new ArrayList<>();
-    ReadFileContents readFileContents= new ReadFileContents();
+    public List<MonthData> dataMonth = new ArrayList<>();
+    ReadFileContents readFileContents = new ReadFileContents();
 
     private List<Data> readData(String path) {
         String months = readFileContents.readFileContentsOrNull(path);
@@ -25,7 +27,7 @@ public class MonthlyReport {
     public void getReport() {
         for (int i = 0; i < 3; i++) {
             String monthName;
-            switch (i) { // я подумаю ещё как тут использовать enum, не понимаю так как у меня ещё сразу здесь перечисление файлов по месяцу
+            switch (i) {
                 case 0:
                     monthName = "Январь";
                     break;
@@ -73,7 +75,7 @@ public class MonthlyReport {
         }
     }
 
-    public ArrayList<Integer> sumProfitMonth(){
+    public ArrayList<Integer> sumProfitMonth() {
         ArrayList<Integer> sumProfitOfMonth = new ArrayList<>();
         if (!dataMonth.isEmpty()) {
             for (MonthData monthData : dataMonth) {
@@ -90,7 +92,7 @@ public class MonthlyReport {
         return sumProfitOfMonth;
     }
 
-    public ArrayList<Integer> sumExpenseMonth(){
+    public ArrayList<Integer> sumExpenseMonth() {
         ArrayList<Integer> sumExpenseOfMonth = new ArrayList<>();
         if (!dataMonth.isEmpty()) {
             for (MonthData monthData : dataMonth) {

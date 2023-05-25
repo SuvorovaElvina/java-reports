@@ -1,10 +1,12 @@
+package ru.yandex.practicum;
+
 import java.util.ArrayList;
 
 public class YearlyReport {
-    ArrayList<DataYear> dataYear = new ArrayList<>();
-    ReadFileContents readFileContents= new ReadFileContents();
+    public ArrayList<DataYear> dataYear = new ArrayList<>();
+    ReadFileContents readFileContents = new ReadFileContents();
 
-    public void getReport(String path){
+    public void getReport(String path) {
         String months = readFileContents.readFileContentsOrNull(path);
         String[] lines = months.split("\n");
 
@@ -19,8 +21,8 @@ public class YearlyReport {
         }
     }
 
-    public void printInformation(){
-        if (!dataYear.isEmpty()){
+    public void printInformation() {
+        if (!dataYear.isEmpty()) {
             System.out.println("Год 2021");
             this.profitEachMonth();
             this.middleProfitAndExpense();
@@ -31,7 +33,7 @@ public class YearlyReport {
 
     public ArrayList<Integer> profitOfMonth() {
         ArrayList<Integer> profitOfMonth = new ArrayList<>();
-        if (!dataYear.isEmpty()){
+        if (!dataYear.isEmpty()) {
             for (DataYear data : dataYear) {
                 if (!data.isExpense) {
                     profitOfMonth.add(data.amount);
@@ -41,7 +43,7 @@ public class YearlyReport {
         return profitOfMonth;
     }
 
-    public ArrayList<Integer> expenseOfMonth(){
+    public ArrayList<Integer> expenseOfMonth() {
         ArrayList<Integer> expenseOfMonth = new ArrayList<>();
         if (!dataYear.isEmpty())
             for (DataYear data : dataYear) {
@@ -52,7 +54,7 @@ public class YearlyReport {
         return expenseOfMonth;
     }
 
-    private void middleProfitAndExpense(){
+    private void middleProfitAndExpense() {
         Integer sumProfit = 0;
         Integer sumExpense = 0;
         Integer monthProfit = 0;
@@ -70,14 +72,14 @@ public class YearlyReport {
         System.out.println("Средний расход за все месяцы в году составляет " + sumExpense / monthExpense);
     }
 
-    private void profitEachMonth(){
+    private void profitEachMonth() {
         Integer sumProfit = 0;
         Integer sumExpense = 0;
         int j = 1;
         System.out.println("Прибыль по каждому месяцу:");
         for (int i = 0; i < dataYear.size(); i++) {
             DataYear data = dataYear.get(i);
-            if (!data.isExpense){
+            if (!data.isExpense) {
                 sumProfit = data.amount;
             } else {
                 sumExpense = data.amount;

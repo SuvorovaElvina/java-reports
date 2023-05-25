@@ -1,3 +1,7 @@
+import ru.yandex.practicum.MonthlyReport;
+import ru.yandex.practicum.Reconciliation;
+import ru.yandex.practicum.YearlyReport;
+
 import java.util.Scanner;
 
 public class Main {
