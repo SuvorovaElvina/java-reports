@@ -16,8 +16,10 @@ public class Main {
             int command = scanner.nextInt();
             if (command == 1){
                 monthlyReport.getReport();
+                System.out.println("Все месячные отчёты считаны.");
             } else if (command == 2) {
                 yearlyReport.getReport("resources\\y.2021.csv");
+                System.out.println("Годовой отчёт считан.");
             } else if (command == 3) {
                 if (monthlyReport.dataMonth.isEmpty() && yearlyReport.dataYear.isEmpty()){
                     System.out.println("Вы не считали месячный и годовой отчёты.");
